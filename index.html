@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="bg-[#F0FDF4]">
     <header>
         <div class="bg-[#15803D] flex flex-col md:flex-row justify-around align-middle items-center w-full min-h-[95px]">
     <div class="text-white font-bold text-2xl">Green Earth</div>
@@ -34,7 +34,21 @@ generations.</p>
 </div>
 <div><img src="./assets/hero-leaf2.png" alt="" class=" w-full md:max-w-[550px] max-h-[380px]"></div>
     </section>
-    <section><p class="text-3xl font-bold text-center mt-8">Choose Your Trees</p></section>
+    <section><p class="text-3xl font-bold text-center mt-8">Choose Your Trees</p>
+        <div class="max-w-[1700px] mx-auto flex justify-around mt-8">
+
+     <div id="category-container"> 
+        <h1 class="text-3xl font-bold">categories</h1> 
+        <div class="w-[200px] h-[35px] p-3 active"></div>
+          </div>
+   <div id="cart-container" class="w-[1100px] h-full grid grid-cols-3 gap-3">
+
+   </div> 
+    <div id="total-cart" class="w-[300px] h-[1300px] bg-white">
+<span class="text-3xl font-bold">Your Cart</span>
+    </div>
+</div>
+    </section>
     <section class="max-w-[1100px] min-h-[600px] mx-auto"><p class="text-3xl font-bold text-center mt-10">About the Campaign</p>
     <div class="flex flex-col md:flex-row justify-center items-center gap-10 mt-8">
         <img src="./assets/about.png" alt="" class="max-w-[1/2] max-h-[500px]">
@@ -92,6 +106,6 @@ generations.</p>
 </footer>
 
     
-    
+ <script src="cart.js"></script>   
 </body>
 </html>
