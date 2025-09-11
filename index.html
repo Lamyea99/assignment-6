@@ -8,6 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="styles/style.css">
 </head>
 <body class="bg-[#F0FDF4]">
     <header>
@@ -39,11 +40,12 @@ generations.</p>
 
      <div id="category-container"> 
         <h1 class="text-3xl font-bold">categories</h1> 
-        <div class="w-[200px] h-[35px] p-3 active"></div>
+        <div onclick="loadCart(); first();" id="all-trees" class="w-[200px] h-[35px] p-3 category-btn">All Trees</div>
           </div>
    <div id="cart-container" class="w-[1100px] h-full grid grid-cols-3 gap-3">
-
-   </div> 
+ </div> 
+ 
+ 
     <div id="total-cart" class="w-[300px] h-[1300px] bg-white">
 <span class="text-3xl font-bold">Your Cart</span>
     </div>
