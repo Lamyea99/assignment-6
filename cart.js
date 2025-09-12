@@ -10,11 +10,29 @@ const displayCategory = (categories) =>{
 const categoryContainer = document.getElementById("category-container")
 for(let category of categories){
     const btnDiv =document.createElement("div")
-    btnDiv.innerHTML = `<div onclick="cartCategory(${category.id})" id="few-cart-${category.id}" class="w-[200px] h-[35px] p-3 category-btn">${category.category_name}s
+    btnDiv.innerHTML = `<div onclick="cartCategory(${category.id})" id="few-cart-${category.id}" class="max-w-[200px] h-[35px] p-3 category-btn">${category.category_name}s
     </div>`;
     categoryContainer.append(btnDiv);
 }
 }
+
+const loadTreeDetail = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    const res = await fetch(url);
+    const details = await res.json();
+    displayTreeDetails(details.plants);
+};
+
+const displayTreeDetails = (tree) => {
+    const detailsBox =document.getElementById("details-container");
+    detailsBox.innerHTML =` <div>
+      <h2 class="text-3xl font-bold mb-2">${tree.name}</h2>
+      <img src="${tree.image}" alt="" class="w-full h-[240px] mb-2">
+      <div class="text-2xl font-bold mb=2">Category:${tree.category}</div>
+      <div class="text-2xl font-bold mb-2">Price:৳${tree.price}</div>
+      <div class="text-2xl font-bold mb-2">Description:${tree.description}</div>`;
+    document.getElementById("word_modal").showModal();
+};
 
 const removeActive = () => {
     const removeBtn = document.querySelectorAll(".category-btn");
@@ -41,9 +59,9 @@ const showCart = (selecting) =>{
  cartContainer.innerHTML ="";
  for(let select of selecting){
     const newCart = document.createElement("div");
-    newCart.innerHTML =` <div class="p-6 max-h-[480px] w-[330px] bg-white">
+    newCart.innerHTML =` <div class="p-6 h-full w-[330px] bg-white mx-auto">
     <img src="${select.image}" alt="" class="w-[300px] h-[180px] mb-2">
-    <h3 class="font-semibold text-[14px] mb-1">${select.name}</h3>
+    <h3 onclick="loadTreeDetail(${select.id})" class="font-semibold text-[14px] mb-1">${select.name}</h3>
     <p class="text-gray-500 mb-1">${select.description}</p> 
     <div class="flex justify-between items-baseline mb-2">
         <button class="min-w-[86px] min-h-[28px] bg-[#DCFCE7] text-[#15803D] rounded-xl">${select.category}</button>
@@ -67,9 +85,9 @@ const displayCart = (carts) =>{
     cartContainer.innerHTML = "";
     for(let cart of carts){
     const cartDiv = document.createElement("div");
-    cartDiv.innerHTML = ` <div class="p-6 max-h-[480px] w-[330px] bg-white">
+    cartDiv.innerHTML = ` <div class="p-6 h-full w-[330px] bg-white mx-auto">
     <img src="${cart.image}" alt="" class="w-[300px] h-[180px] mb-2">
-    <h3 class="font-semibold text-[14px] mb-1">${cart.name}</h3>
+    <h3 onclick="loadTreeDetail(${cart.id})" class="font-semibold text-[14px] mb-1">${cart.name}</h3>
     <p class="text-gray-500 mb-1">${cart.description}</p> 
     <div class="flex justify-between items-baseline mb-2">
         <button class="min-w-[86px] min-h-[28px] bg-[#DCFCE7] text-[#15803D] rounded-xl">${cart.category}</button>

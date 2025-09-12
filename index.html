@@ -36,17 +36,17 @@ generations.</p>
 <div><img src="./assets/hero-leaf2.png" alt="" class=" w-full md:max-w-[550px] max-h-[380px]"></div>
     </section>
     <section><p class="text-3xl font-bold text-center mt-8">Choose Your Trees</p>
-        <div class="max-w-[1700px] mx-auto flex justify-around mt-8">
+        <div class="max-w-[1700px] mx-auto md:flex justify-around mt-8">
 
      <div id="category-container"> 
         <h1 class="text-3xl font-bold">categories</h1> 
-        <div onclick="loadCart(); first();" id="all-trees" class="w-[200px] h-[35px] p-3 category-btn">All Trees</div>
+        <div onclick="loadCart(); first();" id="all-trees" class="max-w-[200px] h-[35px] p-3 category-btn">All Trees</div>
           </div>
-   <div id="cart-container" class="w-[1100px] h-full grid grid-cols-3 gap-3">
+   <div id="cart-container" class="max-w-[1100px] h-full grid grid-cols-1 md:grid-cols-3 gap-3">
  </div> 
  
  
-    <div id="total-cart" class="w-[300px] h-[1300px] bg-white">
+    <div id="total-cart" class="w-[350px] h-[1300px] bg-white">
 <span class="text-3xl font-bold">Your Cart</span>
     </div>
 </div>
@@ -89,9 +89,10 @@ generations.</p>
   <input type="email" class="input w-[300px] md:w-[570px] h-[48px]" placeholder="Your Email Address" />
 
   <div class="dropdown">
-  <div tabindex="0" role="button" class="btn w-[300px] md:w-[568px] justify-start">Number of Trees</div>
+  <div tabindex="0" role="button" class="btn w-[300px] md:w-[568px] flex justify-between items-center"><div>Number of Trees</div>
+  <i class="fa-solid fa-arrow-down"></i></div>
   <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-[300px] md:w-[568px] shadow-sm flex flex-col">
-    <li><a class=" w-[300px]md:w-[568px]">1 Tree - $5</a></li>
+    <li><a class=" w-[300px] md:w-[568px]">1 Tree - $5</a></li>
     <li><a class="w-[300px] md:w-[568px]">5 Trees - $25</a></li>
     <li><a class="w-[300px] md:w-[568px]">10 Trees - $50</a></li>
   </ul>
@@ -107,6 +108,25 @@ generations.</p>
   </aside>
 </footer>
 
+
+
+<!-- Open the modal using ID.showModal() method -->
+<!---- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+<dialog id="word_modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="details-container"> 
+    
+     
+    
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
     
  <script src="cart.js"></script>   
 </body>
