@@ -1,4 +1,15 @@
 
+const manageSpinner = (status) =>{
+    if(status === true){
+     document.getElementById("spinner").classList.remove("hidden");
+     document.getElementById("cart-container").classList.add("hidden");
+      }
+
+else{
+  document.getElementById("cart-container").classList.remove("hidden");
+  document.getElementById("spinner").classList.add("hidden");
+}
+};
 
 const loadTrees = () => {
 fetch("https://openapi.programming-hero.com/api/categories")
@@ -46,6 +57,7 @@ const removeActive = () => {
     }
 
 const cartCategory = (id) =>{
+    manageSpinner(true);
     fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then((res) => res.json())
     .then((json) =>{ 
@@ -59,7 +71,7 @@ const showCart = (selecting) =>{
  cartContainer.innerHTML ="";
  for(let select of selecting){
     const newCart = document.createElement("div");
-    newCart.innerHTML =` <div class="p-6 h-full w-[330px] bg-white mx-auto">
+    newCart.innerHTML =` <div class="p-6 min-h-[380px] w-[330px] bg-white mx-auto">
     <img src="${select.image}" alt="" class="w-[300px] h-[180px] mb-2">
     <h3 onclick="loadTreeDetail(${select.id})" class="font-semibold text-[14px] mb-1">${select.name}</h3>
     <p class="text-gray-500 mb-1">${select.description}</p> 
@@ -70,11 +82,12 @@ const showCart = (selecting) =>{
     <button class="w-[300px] h-[45px] bg-[#15803D] text-white rounded-3xl mx-auto">Add to Cart</button>
    </div>`
    cartContainer.append(newCart);
- }
-
-}
+ };
+manageSpinner(false);
+};
 
 const loadCart = () =>{
+    manageSpinner(true);
     fetch("https://openapi.programming-hero.com/api/plants")
 .then((res) => res.json())
 .then((json) => displayCart(json.plants))
@@ -97,7 +110,8 @@ const displayCart = (carts) =>{
    </div>
 `   
       cartContainer.append(cartDiv); 
-    }
+    };
+    manageSpinner(false);
 }
 
 loadTrees();
