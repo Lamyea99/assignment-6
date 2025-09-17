@@ -1,4 +1,7 @@
 
+let sum = 0;
+
+
 const manageSpinner = (status) =>{
     if(status === true){
      document.getElementById("spinner").classList.remove("hidden");
@@ -11,6 +14,53 @@ else{
 }
 };
 
+const yourCartContainer =(id) =>{
+fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+.then((res) => res.json())
+.then((json) => yourContainer(json.plants))
+}
+const yourContainer = (cartLoad) =>{
+    const totalCarts = document.getElementById("total-carts");
+    const cartBox = document.createElement("div");
+    cartBox.innerHTML =`<div class="w-[300px] h-[80px] mx-auto flex justify-between items-center bg-[#DCFCE7] rounded-md p-7 mb-2">
+    <div>
+      <h2 class="text-xl font-bold">${cartLoad.name}</h2>
+      <h3><span>৳</span>
+      <span> ${cartLoad.price}</span><i class="fa-solid fa-xmark"></i> 1</h3>
+    </div>
+    <div><i class="fa-solid fa-xmark vanish"></i></div>
+   </div> 
+   `;
+   totalCarts.append(cartBox);
+ document.getElementById("total").classList.remove("hidden");
+   sum = sum + cartLoad.price;
+    const totalPrice = document.getElementById("total-price");
+    totalPrice.innerText =sum;
+};
+
+
+
+document.getElementById("total-carts").addEventListener("click", function(event){
+if(event.target.className.includes("vanish")){
+  
+  const vanishCart = event.target;
+
+   const minusAmount = vanishCart.parentNode.parentNode.children[0].children[1].children[1].innerText;
+        
+    const vanishDiv = vanishCart.parentNode.parentNode;
+    vanishDiv.innerHTML = "";
+    vanishDiv.className = "";
+   let totalPrice = document.getElementById("total-price");
+     if(sum > 0){
+    sum = sum - Number(minusAmount);
+document.getElementById("total-price").innerText = sum;};
+if(sum === 0){
+  //  document.getElementById("total").classList.add("hidden");
+}
+};
+});
+
+
 const loadTrees = () => {
 fetch("https://openapi.programming-hero.com/api/categories")
 .then((res) => res.json())
@@ -21,8 +71,8 @@ const displayCategory = (categories) =>{
 const categoryContainer = document.getElementById("category-container")
 for(let category of categories){
     const btnDiv =document.createElement("div")
-    btnDiv.innerHTML = `<div onclick="cartCategory(${category.id})" id="few-cart-${category.id}" class="max-w-[200px] h-[35px] p-3 category-btn">${category.category_name}s
-    </div>`;
+    btnDiv.innerHTML = `<button onclick="cartCategory(${category.id})" id="few-cart-${category.id}" class="max-w-[200px] h-[35px] p-3 category-btn text-left rounded-md">${category.category_name}s
+    </button>`;
     categoryContainer.append(btnDiv);
 }
 }
@@ -79,7 +129,7 @@ const showCart = (selecting) =>{
         <button class="min-w-[86px] min-h-[28px] bg-[#DCFCE7] text-[#15803D] rounded-xl">${select.category}</button>
         <p class="font-bold">৳${select.price}</p>
     </div>
-    <button class="w-[300px] h-[45px] bg-[#15803D] text-white rounded-3xl mx-auto">Add to Cart</button>
+    <button onclick="yourCartContainer(${select.id})" class="w-[300px] h-[45px] bg-[#15803D] text-white rounded-3xl mx-auto">Add to Cart</button>
    </div>`
    cartContainer.append(newCart);
  };
@@ -106,7 +156,7 @@ const displayCart = (carts) =>{
         <button class="min-w-[86px] min-h-[28px] bg-[#DCFCE7] text-[#15803D] rounded-xl">${cart.category}</button>
         <p class="font-bold">৳${cart.price}</p>
     </div>
-    <button class="w-[300px] h-[45px] bg-[#15803D] text-white rounded-3xl mx-auto">Add to Cart</button>
+    <button onclick="yourCartContainer(${cart.id})" class="w-[300px] h-[45px] bg-[#15803D] text-white rounded-3xl mx-auto">Add to Cart</button>
    </div>
 `   
       cartContainer.append(cartDiv); 

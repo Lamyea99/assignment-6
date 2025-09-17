@@ -44,7 +44,7 @@ generations.</p>
 
      <div id="category-container"> 
         <h1 class="text-3xl font-bold">categories</h1> 
-        <div onclick="loadCart(); first();" id="all-trees" class="max-w-[200px] h-[35px] p-3 category-btn">All Trees</div>
+        <button onclick="loadCart(); first();" id="all-trees" class="max-w-[200px] h-[35px] p-3 category-btn text-left rounded-md">All Trees</button>
           </div>
 
       <div>  
@@ -55,9 +55,16 @@ generations.</p>
       </div>
 
  
-    <div id="total-cart" class="w-[350px] h-[1300px] bg-white">
-<span class="text-3xl font-bold">Your Cart</span>
-    </div>
+    <div class="w-[350px] h-[1300px] bg-white">
+<span class="text-3xl font-bold mb-2">Your Cart</span>
+ <div id="total-carts"> 
+     
+</div>
+   <div id="total" class="flex justify-between items-center hidden w-[300px] mx-auto">
+     <h3 class="text-2xl font-bold">Total</h3>
+     <div class="text-2xl font-bold">৳<span id="total-price"></span></div>
+  </div>
+
 </div>
     </section>
     <section class="max-w-[1100px] min-h-[600px] mx-auto"><p class="text-3xl font-bold text-center mt-10">About the Campaign</p>
