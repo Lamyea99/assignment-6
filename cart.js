@@ -1,7 +1,6 @@
 
 let sum = 0;
 
-
 const manageSpinner = (status) =>{
     if(status === true){
      document.getElementById("spinner").classList.remove("hidden");
@@ -20,6 +19,7 @@ fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
 .then((json) => yourContainer(json.plants))
 }
 const yourContainer = (cartLoad) =>{
+  alert(`${cartLoad.name} has been added to the cart`);
     const totalCarts = document.getElementById("total-carts");
     const cartBox = document.createElement("div");
     cartBox.innerHTML =`<div class="w-[300px] h-[80px] mx-auto flex justify-between items-center bg-[#DCFCE7] rounded-md p-7 mb-2">
@@ -54,12 +54,8 @@ if(event.target.className.includes("vanish")){
      if(sum > 0){
     sum = sum - Number(minusAmount);
 document.getElementById("total-price").innerText = sum;};
-if(sum === 0){
-  //  document.getElementById("total").classList.add("hidden");
-}
 };
 });
-
 
 const loadTrees = () => {
 fetch("https://openapi.programming-hero.com/api/categories")
@@ -71,7 +67,7 @@ const displayCategory = (categories) =>{
 const categoryContainer = document.getElementById("category-container")
 for(let category of categories){
     const btnDiv =document.createElement("div")
-    btnDiv.innerHTML = `<button onclick="cartCategory(${category.id})" id="few-cart-${category.id}" class="max-w-[200px] h-[35px] p-3 category-btn text-left rounded-md">${category.category_name}s
+    btnDiv.innerHTML = `<button onclick="cartCategory(${category.id})" id="few-cart-${category.id}" class="w-[200px] h-[full] p-2 category-btn text-left rounded-md">${category.category_name}s
     </button>`;
     categoryContainer.append(btnDiv);
 }
@@ -121,15 +117,15 @@ const showCart = (selecting) =>{
  cartContainer.innerHTML ="";
  for(let select of selecting){
     const newCart = document.createElement("div");
-    newCart.innerHTML =` <div class="p-6 min-h-[380px] w-[330px] bg-white mx-auto">
+    newCart.innerHTML =`<div class="p-6 min-h-[380px] w-[330px] bg-white mx-auto">
     <img src="${select.image}" alt="" class="w-[300px] h-[180px] mb-2">
-    <h3 onclick="loadTreeDetail(${select.id})" class="font-semibold text-[14px] mb-1">${select.name}</h3>
+    <button onclick="loadTreeDetail(${select.id})" class="font-semibold text-[14px] mb-1">${select.name}</button>
     <p class="text-gray-500 mb-1">${select.description}</p> 
     <div class="flex justify-between items-baseline mb-2">
         <button class="min-w-[86px] min-h-[28px] bg-[#DCFCE7] text-[#15803D] rounded-xl">${select.category}</button>
         <p class="font-bold">৳${select.price}</p>
     </div>
-    <button onclick="yourCartContainer(${select.id})" class="w-[300px] h-[45px] bg-[#15803D] text-white rounded-3xl mx-auto">Add to Cart</button>
+    <button onclick="yourCartContainer(${select.id})" class="w-full h-[45px] bg-[#15803D] text-white rounded-3xl mx-auto">Add to Cart</button>
    </div>`
    cartContainer.append(newCart);
  };
@@ -150,13 +146,13 @@ const displayCart = (carts) =>{
     const cartDiv = document.createElement("div");
     cartDiv.innerHTML = ` <div class="p-6 h-full w-[330px] bg-white mx-auto">
     <img src="${cart.image}" alt="" class="w-[300px] h-[180px] mb-2">
-    <h3 onclick="loadTreeDetail(${cart.id})" class="font-semibold text-[14px] mb-1">${cart.name}</h3>
+    <button onclick="loadTreeDetail(${cart.id})" class="font-semibold text-[14px] mb-1">${cart.name}</button>
     <p class="text-gray-500 mb-1">${cart.description}</p> 
     <div class="flex justify-between items-baseline mb-2">
         <button class="min-w-[86px] min-h-[28px] bg-[#DCFCE7] text-[#15803D] rounded-xl">${cart.category}</button>
         <p class="font-bold">৳${cart.price}</p>
     </div>
-    <button onclick="yourCartContainer(${cart.id})" class="w-[300px] h-[45px] bg-[#15803D] text-white rounded-3xl mx-auto">Add to Cart</button>
+    <button onclick="yourCartContainer(${cart.id})" class="w-full h-[45px] bg-[#15803D] text-white rounded-3xl mx-auto">Add to Cart</button>
    </div>
 `   
       cartContainer.append(cartDiv); 
